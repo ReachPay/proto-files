@@ -1,0 +1,29 @@
+
+syntax = "proto3";
+package orderscharger;
+
+
+message ExecuteOrderRequest {
+    string ProcessId = 1;
+    string OrderId = 2;
+    string PayerClientId = 3;
+}
+
+enum ExecuteOrderResult{
+    Ok = 0;
+    NotEnoughBalance = 1;
+    OrderNotFound = 2;
+    PayerIsNotSet = 3;
+    NotYourOrderToPay = 4;
+    OrderIsAlreadyPaid = 5;
+    OrderIsExpired = 6;
+    OrderIsCanceled = 7;
+}
+
+message ExecuteOrderResponse{
+    orderscharger.ExecuteOrderResult Result = 1;
+}
+
+service OrdersChargerService {
+    rpc ExecuteOrder(orderscharger.ExecuteOrderRequest) returns (orderscharger.ExecuteOrderResponse);
+}

@@ -1,0 +1,104 @@
+
+syntax = "proto3";
+
+package orders;
+
+message RegisterOrderGrpcRequest {
+    string ClientId = 1;
+    int64 Timestamp = 2;
+    int64 Expires = 3;
+    string WalletId = 4;
+    double Amount = 5;
+    string Ip = 6;
+    string CallbackUrl =7;
+    string OkUrl = 8;
+    string FailUrl = 9;
+    string Memo = 10;
+}
+
+enum OrderStatus{
+    ActiveOrder = 0;
+    CancelledOrder = 1;
+    ExpiredOrder = 2;
+    PaidOrder = 3;
+}
+
+message OrderModel{
+    string OrderId = 1;
+    optional string PayerClientId = 2;
+    string Ip = 3;
+    string Currency = 4;
+    double Amount = 5;
+    string CallbackUrl = 6;
+    string OkUrl = 7;
+    string FailUrl = 8;
+    int64 RegisteredDate = 9;
+    string IssuerClientId = 10;
+    string Memo = 11;
+    orders.OrderStatus Status = 12;
+    double Commission = 13;
+    bool IsCommissionOnTop = 14;
+    string CommissionClientId = 15;
+}
+
+message GetClientOrdersGrpcRequest{
+    string ClientId = 1;
+}
+
+message AssignPayerGrpcRequest{
+    string OrderId = 1;
+    string ClientId = 2; 
+}
+
+message AssignPayerResponse{
+     orders.AssignPayerStatus Status = 1;
+}
+
+enum AssignPayerStatus{
+    Assigned = 0;
+    OrderNotFound = 1;
+    PayerAndIssuerCanNotBeTheSame = 2;
+}
+
+
+message CancelOrderGrpcRequest{
+    string ProcessId = 1;
+    string OrderId = 2;
+    string ClientId = 3; 
+}
+
+enum DoneOrderResult{
+    Ok=0;
+    NotFound=1;
+    AlreadyCanceled=2;
+    Expired=3;
+    Paied=4;
+}
+
+message CancelOrderResponse{
+    orders.DoneOrderResult Result = 1; 
+}
+
+
+message MarkOrderAsExecutedRequest{
+    string ProcessId = 1;
+    string OrderId = 2;
+}
+
+message MarkOrderAsExecutedResponse{
+    orders.DoneOrderResult Result = 1; 
+}
+
+message GetOrderByIdRequest {
+    string OrderId = 1;
+}
+
+
+service OrdersFlowsGrpcService {
+    rpc Register(orders.RegisterOrderGrpcRequest) returns (orders.OrderModel);
+    rpc AssignPayer(orders.AssignPayerGrpcRequest) returns (orders.AssignPayerResponse);
+    rpc GetClientOrders(orders.GetClientOrdersGrpcRequest) returns (stream orders.OrderModel);
+    rpc GetById(orders.GetOrderByIdRequest) returns (stream orders.OrderModel);    
+    rpc CancelOrder(orders.CancelOrderGrpcRequest) returns (orders.CancelOrderResponse);
+    rpc MarkOrderAsExecuted(orders.MarkOrderAsExecutedRequest) returns (orders.MarkOrderAsExecutedResponse);
+}
