@@ -1,0 +1,79 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package merchantflows;
+
+message ResolveMerchantRequest {
+    string ApiKey = 1;
+}
+
+message ResolveMerchantResponse{
+    optional string MerchantId = 1;
+}
+
+message AddMerchantRequest {
+    string Id = 1;
+    string ApiKey = 2;
+}
+
+message EnableDisableRequest {
+    string Id = 1;
+    bool Enable = 2;
+}
+
+message UpdateApiKeyRequest {
+    string Id = 1;
+    string ApiKey = 2;
+}
+
+message IsMerchantRequest {
+    string ClientId = 1;
+}
+
+message IsMerchantResponse {
+    bool IsMerchant = 1;
+}
+
+message AddCallbackUrlRequest{
+    string ClientId = 1;
+    string CallbackUrl = 2;
+}
+
+message RemoveCallbackUrlRequest{
+    string ClientId = 1;
+    string CallbackUrl = 2;
+}
+
+message UpdateComissionSettingsRequest{
+    string ClientId = 1;
+    double ComissionPercent = 2;
+}
+
+message GetMerchantSettingsRequest{
+    string ClientId = 1;
+}
+
+message GetMerchantSettingsResponse{
+    merchantflows.MerchantSettingsModel Settings = 1;
+}
+
+message MerchantSettingsModel{
+    repeated string CallbackUrls = 1;
+    double ComissionPercent = 2;
+    string ApiKey = 3;
+}
+
+service MerchantFlowsService {
+    rpc Resolve(merchantflows.ResolveMerchantRequest) returns (merchantflows.ResolveMerchantResponse);
+    rpc Add(merchantflows.AddMerchantRequest) returns (google.protobuf.Empty);
+    rpc EnableDisable(merchantflows.EnableDisableRequest) returns (google.protobuf.Empty);
+    rpc UpdateApiKey(merchantflows.UpdateApiKeyRequest) returns (google.protobuf.Empty);
+    rpc IsMerchant(merchantflows.IsMerchantRequest) returns (merchantflows.IsMerchantResponse);
+
+    rpc AddCallbackUrl(merchantflows.AddCallbackUrlRequest) returns (google.protobuf.Empty);
+    rpc RemoveCallbackUrl(merchantflows.RemoveCallbackUrlRequest) returns (google.protobuf.Empty);
+
+    rpc UpdateComissionSettings(merchantflows.UpdateComissionSettingsRequest)  returns (google.protobuf.Empty);
+    rpc GetMerchantSettings(merchantflows.GetMerchantSettingsRequest) returns (merchantflows.GetMerchantSettingsResponse);
+}
+
