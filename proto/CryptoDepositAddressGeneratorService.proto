@@ -1,0 +1,48 @@
+
+syntax = "proto3";
+package crypto_deposit_addr_gen ;
+
+
+
+message GetWalletDepositAddressRequest {
+    string ClientId = 1;
+    string AssetId = 2;
+}
+
+message GetOrderDepositAddressRequest {
+    string OrderId = 1;
+    string ClientId = 2;
+    string AssetId = 3;
+}
+
+message GetMerchantDepositAddressRequest {
+    string MerchantId = 1;
+    string ClientHandleId = 2;
+    string AssetId = 3;
+}
+
+message AddressModel{
+    string NetworkId = 1;
+    string Address = 2;
+    optional string Tag = 3;
+}
+
+message GetByDepositAddressRequest{
+    string Address = 1;
+}
+
+message GetByAddressResponse{
+    optional string ClientId = 1;
+    optional string OrderId = 2;
+    optional string AssetId = 3;
+    optional string MerchantId = 4;
+}
+
+
+service CryptoDepositAddressGeneratorService {
+    rpc GetWalletDepositAddresses(crypto_deposit_addr_gen.GetWalletDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
+    rpc GetOrderDepositAddresses(crypto_deposit_addr_gen.GetOrderDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
+    rpc GetMerchantDepositAddresses(crypto_deposit_addr_gen.GetMerchantDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
+
+    rpc GetByDepositAddress(crypto_deposit_addr_gen.GetByDepositAddressRequest) returns (crypto_deposit_addr_gen.GetByAddressResponse);    
+}
