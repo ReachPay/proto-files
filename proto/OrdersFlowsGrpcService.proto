@@ -58,6 +58,9 @@ enum AssignPayerStatus{
     Assigned = 0;
     OrderNotFound = 1;
     PayerAndIssuerCanNotBeTheSame = 2;
+    OrderIsExpired = 3;
+    OrderIsCanceledByUser = 4;
+    OrderIsPaid = 5;
 }
 
 
