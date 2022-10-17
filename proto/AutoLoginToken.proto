@@ -1,0 +1,15 @@
+syntax = "proto3";
+package autologintoken;
+
+message GenerateConfirmationLinkRequest {
+    string ClientId = 1;
+    string Domain = 2;
+}
+
+message GenerateConfirmationLinkResponse{
+    string ConfirmUrl = 1;
+}
+
+service AutoLoginTokenSerivce {
+    rpc GenerateConfirmationLink(autologintoken.GenerateConfirmationLinkRequest) returns (autologintoken.GenerateConfirmationLinkResponse);
+ }
