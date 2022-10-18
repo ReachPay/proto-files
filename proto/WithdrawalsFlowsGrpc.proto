@@ -1,0 +1,84 @@
+
+syntax = "proto3";
+package withdrawals;
+import "google/protobuf/empty.proto";
+
+enum WithdrawalStatus{
+    PENDING = 0;
+    CANCELED = 1;
+    DECLINED = 2;
+    FAILED = 3;
+    PROCESSED = 4;
+}
+
+message RegisterMerchantWithdrawalGrpcRequest {
+    string MerchantId = 1;
+    string Asset = 2;
+    string Address = 3;
+    optional string Tag = 4;
+    string Network = 5;
+}
+
+message RegisterClientWithdrawalGrpcRequest {
+    string ClientId = 1;
+    string Asset = 2;
+    string Address = 3;
+    optional string Tag = 4;
+    string Network = 5;
+}
+
+message WithdrawalGrpcModel{
+    string Id = 1;
+    withdrawals.WithdrawalStatus Status = 2;
+    optional string MerchantId = 3;
+    optional string ClientId = 4;
+    string Asset = 5;
+    string Address = 6;
+    string Network = 7;
+    optional string Tag = 8;
+    int32 CreateDate = 9;
+    int32 UpdateDate = 10;
+}
+
+message UpdateWithdrawalStatusGrpcRequest {
+    string Id = 1;
+    withdrawals.WithdrawalStatus Status = 2;
+}
+
+message GetClientWithdrawalsGrpcRequest {
+    string ClientId = 1;
+    optional int64 From = 2;
+    optional int64 To = 3;
+}
+
+message GetMerchantWithdrawalsGrpcRequest {
+    string MerchantId = 1;
+    optional int64 From = 2;
+    optional int64 To = 3;
+}
+
+message GetWithdrawalsGrpcRequest {
+    bool IsMerchant = 1;
+    optional withdrawals.WithdrawalStatus Status = 2;
+    optional int64 From = 3;
+    optional int64 To = 4;
+}
+
+enum CreateWithdrawalsStatus{
+    Ok = 0;
+    WalletNotSupported = 2;
+}
+
+message CreateWithdrawalGrpcResponse{
+    withdrawals.CreateWithdrawalsStatus Status = 1;
+    optional withdrawals.WithdrawalGrpcModel Withdrawal = 2;
+}
+
+service WithdrawalsFlowsGrpc {
+    rpc RegisterMerchantWithdrawal(withdrawals.RegisterMerchantWithdrawalGrpcRequest) returns (withdrawals.CreateWithdrawalGrpcResponse);
+    rpc RegisterClientWithdrawal(withdrawals.RegisterClientWithdrawalGrpcRequest) returns (withdrawals.CreateWithdrawalGrpcResponse);
+    rpc UpdateWithdrawalStatus(withdrawals.UpdateWithdrawalStatusGrpcRequest) returns (google.protobuf.Empty);
+    rpc GetClientWithdrawals(withdrawals.GetClientWithdrawalsGrpcRequest) returns (stream WithdrawalGrpcModel);
+    rpc GetMerchantWithdrawals(withdrawals.GetMerchantWithdrawalsGrpcRequest) returns (stream WithdrawalGrpcModel);
+    rpc GetWithdrawals(withdrawals.GetWithdrawalsGrpcRequest) returns (stream WithdrawalGrpcModel);
+}
