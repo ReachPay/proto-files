@@ -36,8 +36,8 @@ message WithdrawalGrpcModel{
     string Address = 6;
     string Network = 7;
     optional string Tag = 8;
-    int32 CreateDate = 9;
-    int32 UpdateDate = 10;
+    int64 CreateDate = 9;
+    int64 UpdateDate = 10;
 }
 
 message UpdateWithdrawalStatusGrpcRequest {
