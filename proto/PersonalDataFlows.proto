@@ -1,0 +1,42 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package personaldata;
+
+message GetPersonalDataGrpcRequest {
+    string ClientId = 1;
+}
+
+message PersonalDataGrpcModel {
+    string Email = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string PhoneNumber = 4;
+    string Address = 5;
+    string City = 6;
+    string ZipCode = 7;
+    string Country = 8;
+    bool Found = 9;
+}
+
+message UpdatePersonalDataGrpcRequest {
+    string ClientId = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string PhoneNumber = 4;
+    string Address = 5;
+    string City = 6;
+    string ZipCode = 7;
+    string Country = 8;
+}
+
+message ConfirmEmailGrpcRequest{
+    string ClientId = 1; 
+}
+
+
+service PersonalDataFlowsGrpcService {
+    rpc Get(personaldata.GetPersonalDataGrpcRequest) returns (personaldata.PersonalDataGrpcModel);
+    rpc Update(personaldata.UpdatePersonalDataGrpcRequest) returns (google.protobuf.Empty);
+    rpc ConfirmEmail(personaldata.ConfirmEmailGrpcRequest) returns (google.protobuf.Empty);
+ }
