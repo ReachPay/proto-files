@@ -1,0 +1,42 @@
+
+syntax = "proto3";
+//import "google/protobuf/empty.proto";
+package wallet_history;
+
+
+message GetHistoryStatisticRequest{
+    string ClientId = 1;
+    string AssetId = 2;
+    int64 FromDate = 3;
+    int64 ToDate = 4;
+}
+
+message HistoryStatisticResponse{
+    int64 RecordsCount = 1;
+}
+
+message GetHistoryGrpcRequest {
+    string ClientId = 1;
+    string AssetId = 2;
+    int64 FromDate = 3;
+    int64 ToDate = 4;
+    int64 PageNo = 5;
+    int64 MessagesPerPage = 6;
+
+}
+
+message HistoryGrpcLine {
+    int64 Timestamp = 1;
+    string AssetId = 2;
+    string OperationType = 3;
+    double Delta = 4;
+    double Balance = 5;
+    string ProcessId = 6;
+    string OperationData = 7;
+}
+
+service WalletHistoryFlowsGrpcService {
+    rpc GetHistoryStatistic(wallet_history.GetHistoryStatisticRequest) returns (wallet_history.HistoryStatisticResponse);
+    rpc GetHistory(wallet_history.GetHistoryGrpcRequest) returns (stream wallet_history.HistoryGrpcLine);
+}
+
