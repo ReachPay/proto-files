@@ -1,8 +1,6 @@
 
 syntax = "proto3";
-package crypto_deposit_addr_gen ;
-
-
+package crypto_deposit_addr_gen;
 
 message GetWalletDepositAddressRequest {
     string ClientId = 1;
@@ -38,11 +36,9 @@ message GetByAddressResponse{
     optional string MerchantId = 4;
 }
 
-
 service CryptoDepositAddressGeneratorService {
     rpc GetWalletDepositAddresses(crypto_deposit_addr_gen.GetWalletDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
     rpc GetOrderDepositAddresses(crypto_deposit_addr_gen.GetOrderDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
     rpc GetMerchantDepositAddresses(crypto_deposit_addr_gen.GetMerchantDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
-
     rpc GetByDepositAddress(crypto_deposit_addr_gen.GetByDepositAddressRequest) returns (crypto_deposit_addr_gen.GetByAddressResponse);    
 }
