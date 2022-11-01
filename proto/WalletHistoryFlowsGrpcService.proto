@@ -29,7 +29,7 @@ message GetHistoryGrpcRequest {
 message HistoryGrpcLine {
     int64 Timestamp = 1;
     string AssetId = 2;
-    string OperationType = 3;
+    int32 OperationType = 3;
     double Delta = 4;
     double Balance = 5;
     string ProcessId = 6;
