@@ -9,6 +9,7 @@ message GetRecordsAmountRequest{
     string AssetId = 2;
     int64 FromDate = 3;
     int64 ToDate = 4;
+    repeated int32 OpTypes = 5;
 }
 
 message GetRecordsAmountResponse{
@@ -22,7 +23,7 @@ message GetHistoryGrpcRequest {
     int64 ToDate = 4;
     int64 PageNo = 5;
     int64 MessagesPerPage = 6;
-
+    repeated int32 OpTypes = 7;
 }
 
 message HistoryGrpcLine {
