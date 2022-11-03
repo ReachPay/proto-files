@@ -6,7 +6,7 @@ package wallet_history;
 
 message GetRecordsAmountRequest{
     string ClientId = 1;
-    string AssetId = 2;
+    repeated string AssetIds = 2;
     int64 FromDate = 3;
     int64 ToDate = 4;
     repeated int32 OpTypes = 5;
@@ -18,7 +18,7 @@ message GetRecordsAmountResponse{
 
 message GetHistoryGrpcRequest {
     string ClientId = 1;
-    string AssetId = 2;
+    repeated string AssetIds = 2;
     int64 FromDate = 3;
     int64 ToDate = 4;
     int64 PageNo = 5;
