@@ -4,7 +4,7 @@ syntax = "proto3";
 package wallet_history;
 
 
-message GetRecordsAmountRequest{
+message GetHistoryStatisticsRequest{
     string ClientId = 1;
     repeated string AssetIds = 2;
     int64 FromDate = 3;
@@ -12,8 +12,9 @@ message GetRecordsAmountRequest{
     repeated int32 OpTypes = 5;
 }
 
-message GetRecordsAmountResponse{
+message GetHistoryStatisticsResponse{
     int64 RecordsCount = 1;
+    repeated string Assets = 2;
 }
 
 message GetHistoryGrpcRequest {
@@ -37,7 +38,7 @@ message HistoryGrpcLine {
 }
 
 service WalletHistoryFlowsGrpcService {
-    rpc GetRecordsAmount(wallet_history.GetRecordsAmountRequest) returns (wallet_history.GetRecordsAmountResponse);
+    rpc GetHistoryStatistics(wallet_history.GetHistoryStatisticsRequest) returns (wallet_history.GetHistoryStatisticsResponse);
     rpc GetHistory(wallet_history.GetHistoryGrpcRequest) returns (stream wallet_history.HistoryGrpcLine);
 }
 
