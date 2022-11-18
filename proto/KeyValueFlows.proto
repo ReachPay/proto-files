@@ -7,6 +7,7 @@ package keyvalue;
 message GetKeyValueGrpcRequestModel {
     string ClientId = 1;
     string Key = 2;
+    int64 TelemetryContext = 3;
 }
 
 message GetKeyValueGrpcResponseModel {
