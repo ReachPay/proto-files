@@ -7,7 +7,7 @@ package keyvalue;
 message GetKeyValueGrpcRequestModel {
     string ClientId = 1;
     string Key = 2;
-    int64 TelemetryContext = 3;
+
 }
 
 message GetKeyValueGrpcResponseModel {
@@ -23,7 +23,7 @@ message SetKeyValueGrpcRequestModel {
     string ClientId = 1;
     string Key = 2;
     string Value = 3;
-    int64 TelemetryContext = 4;
+
 }
 
 //DELETE
@@ -31,7 +31,7 @@ message SetKeyValueGrpcRequestModel {
 message DeleteKeyValueGrpcRequestModel {
     string ClientId = 1;
     string Key = 2;
-    int64 TelemetryContext = 3;
+
 }
 
 service KeyValueFlowsGrpcService {
