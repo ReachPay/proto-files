@@ -82,6 +82,26 @@ message CallbackLogModel{
     int32 Attempt = 11;
 }
 
+enum CallbackOverrideType{
+    FirstConfirm = 0;
+    FullConfirm = 1;
+}
+
+message MerchantOverrideModel{
+    string Currency = 1;
+    string Network = 2;
+    merchantflows.CallbackOverrideType Type = 3;
+}
+
+message AddMerchantOverrideRequest{
+    string ClientId = 1;
+    merchantflows.MerchantOverrideModel Override = 2;
+}
+
+message GetMerchantOverridesRequest{
+    string ClientId = 1;
+}
+
 service MerchantFlowsService {
     rpc Resolve(merchantflows.ResolveMerchantRequest) returns (merchantflows.ResolveMerchantResponse);
     rpc Add(merchantflows.AddMerchantRequest) returns (google.protobuf.Empty);
@@ -93,5 +113,7 @@ service MerchantFlowsService {
     rpc UpdateComissionSettings(merchantflows.UpdateComissionSettingsRequest)  returns (google.protobuf.Empty);
     rpc GetMerchantSettings(merchantflows.GetMerchantSettingsRequest) returns (merchantflows.GetMerchantSettingsResponse);
     rpc GetMerchantCallbackLogs(merchantflows.GetCallbacksLogsRequest) returns (stream merchantflows.CallbackLogModel);
+    rpc AddMerchantCallbackOverride(merchantflows.AddMerchantOverrideRequest) returns (google.protobuf.Empty);
+    rpc GetMerchantCallbacksOverride(merchantflows.GetMerchantOverridesRequest) returns (stream merchantflows.MerchantOverrideModel);
 }
 
