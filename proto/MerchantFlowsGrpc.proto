@@ -95,7 +95,7 @@ message MerchantOverrideModel{
 
 message AddMerchantOverrideRequest{
     string ClientId = 1;
-    merchantflows.MerchantOverrideModel Override = 2;
+    merchantflows.MerchantOverrideModel MerchantOverride = 2;
 }
 
 message GetMerchantOverridesRequest{
