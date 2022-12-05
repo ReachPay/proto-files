@@ -90,7 +90,7 @@ enum CallbackOverrideType{
 message MerchantOverrideModel{
     string Currency = 1;
     string Network = 2;
-    merchantflows.CallbackOverrideType Type = 3;
+    merchantflows.CallbackOverrideType CallbackType = 3;
 }
 
 message AddMerchantOverrideRequest{
