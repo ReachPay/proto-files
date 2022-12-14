@@ -22,11 +22,12 @@ message GetMerchantDepositAddressRequest {
 message AddressModel{
     string NetworkId = 1;
     string Address = 2;
-    optional string Tag = 3;
+    optional string Memo = 3;
 }
 
 message GetByDepositAddressRequest{
     string Address = 1;
+    optional string Memo = 2;
 }
 
 message GetByAddressResponse{
