@@ -10,12 +10,13 @@ message SwapGrpcRequest {
     double SellAmount = 4;
     string BuyWallet = 5;
     double BuyAmount = 6;
+
 }
 
 enum OperationResult{
     Ok = 0;
     NotEnoughtFunds=1;
-    AssetNotFound=2;
+    AssetPairNotFound=2;
     NoLiquidity=3;
     ItMustBeEitherSellOrBuy=4;
 }
