@@ -1,0 +1,33 @@
+
+syntax = "proto3";
+package client_fa_manager;
+import "google/protobuf/empty.proto";
+
+enum OperationTypes{
+    Login = 0;
+    Withdrawal = 1;
+    Exchange = 2;
+    MerchantSettingsUpdate = 3;
+}
+
+message ValidateClientCodeRequest {
+    string ClientId = 1;
+    client_fa_manager.OperationTypes OperationType = 2;
+    string Code = 3;
+    string ProcessId = 4;
+}
+
+message GenerateClientCodeRequest {
+    string ClientId = 1;
+    client_fa_manager.OperationTypes OperationType = 2;
+    string ProcessId = 3;
+}
+
+message ValidateClientCodeResponse {
+    bool IsSuccess = 1;
+}
+
+service Client2FaManager {
+    rpc ValidateClientCode(client_fa_manager.ValidateClientCodeRequest) returns (client_fa_manager.ValidateClientCodeResponse);
+    rpc GenerateClientCode(client_fa_manager.GenerateClientCodeRequest) returns (google.protobuf.Empty);
+}
