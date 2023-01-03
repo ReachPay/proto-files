@@ -34,7 +34,6 @@ message HistoryGrpcLine {
     double Delta = 4;
     double Balance = 5;
     string ProcessId = 6;
-    string OperationData = 7;
 }
 
 service WalletHistoryFlowsGrpcService {
