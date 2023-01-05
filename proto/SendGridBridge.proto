@@ -3,11 +3,25 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 package sendgridbridge;
 
+enum OperationTypes{
+    Login = 0;
+    Withdrawal = 1;
+    Exchange = 2;
+    MerchantSettingsUpdate = 3;
+}
+
 message SendWelcomeEmailRequest {
     string Email = 1;
     string LangId = 2;
     string FullName=3;
     string ConfirmationLink=4;
+}
+
+message Send2FaEmail {
+    string Email = 1;
+    string LangId = 2;
+    string Code = 3;
+    sendgridbridge.OperationTypes OperationType = 4;
 }
 
 message SendRecoveryPasswordRequest{
@@ -20,4 +34,5 @@ message SendRecoveryPasswordRequest{
 service SendGridBridgeGrpcService {
     rpc SendWelcomeEmail(sendgridbridge.SendWelcomeEmailRequest) returns (google.protobuf.Empty);
     rpc SendRecoveryPasswordCode(sendgridbridge.SendRecoveryPasswordRequest) returns (google.protobuf.Empty);
+    rpc Send2FaCode(sendgridbridge.Send2FaEmail) returns (google.protobuf.Empty);
  }
