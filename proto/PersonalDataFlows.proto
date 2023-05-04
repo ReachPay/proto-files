@@ -39,4 +39,5 @@ service PersonalDataFlowsGrpcService {
     rpc Get(personaldata.GetPersonalDataGrpcRequest) returns (personaldata.PersonalDataGrpcModel);
     rpc Update(personaldata.UpdatePersonalDataGrpcRequest) returns (google.protobuf.Empty);
     rpc ConfirmEmail(personaldata.ConfirmEmailGrpcRequest) returns (google.protobuf.Empty);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }

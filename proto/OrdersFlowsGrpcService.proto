@@ -1,6 +1,6 @@
 
 syntax = "proto3";
-
+import "google/protobuf/empty.proto";
 package orders;
 
 message RegisterOrderGrpcRequest {
@@ -104,4 +104,5 @@ service OrdersFlowsGrpcService {
     rpc GetById(orders.GetOrderByIdRequest) returns (stream orders.OrderModel);    
     rpc CancelOrder(orders.CancelOrderGrpcRequest) returns (orders.CancelOrderResponse);
     rpc MarkOrderAsExecuted(orders.MarkOrderAsExecutedRequest) returns (orders.MarkOrderAsExecutedResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }

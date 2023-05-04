@@ -21,5 +21,6 @@ message GetWalletGrpcModel{
 service WalletsPersistenceGrpcService {
     rpc Save(stream wallets_persistence.WalletGrpcModel) returns (google.protobuf.Empty);
     rpc Get(wallets_persistence.GetWalletsGrpcModel) returns (stream wallets_persistence.GetWalletGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
 

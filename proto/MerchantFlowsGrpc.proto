@@ -115,5 +115,6 @@ service MerchantFlowsService {
     rpc GetMerchantCallbackLogs(merchantflows.GetCallbacksLogsRequest) returns (stream merchantflows.CallbackLogModel);
     rpc AddMerchantCallbackOverride(merchantflows.AddMerchantOverrideRequest) returns (google.protobuf.Empty);
     rpc GetMerchantCallbackOverrides(merchantflows.GetMerchantOverridesRequest) returns (stream merchantflows.MerchantOverrideModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 

@@ -1,7 +1,7 @@
 
 syntax = "proto3";
-//import "google/protobuf/empty.proto";
 package exchange_flows;
+import "google/protobuf/empty.proto";
 
 message SwapGrpcRequest {
     string ProcessId = 1;
@@ -27,5 +27,6 @@ message SwapGrpcResponse {
 
 service ExchangeFlowsGrpcService {
     rpc Swap(exchange_flows.SwapGrpcRequest) returns (exchange_flows.SwapGrpcResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
 

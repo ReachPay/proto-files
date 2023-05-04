@@ -91,4 +91,5 @@ service CryptoWalletsManager {
     rpc CreateWithdrawal(crypto_wallets.MakeWithdrawalRequest) returns (crypto_wallets.MakeWithdrawalResponse);
     rpc GetVaultWallets(google.protobuf.Empty) returns (stream FireblocksBridgeVaultWallet);
     rpc ExecuteTransaction(crypto_wallets.ExecuteTransactionGrcpRequest) returns (google.protobuf.Empty);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 } 

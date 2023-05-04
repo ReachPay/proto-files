@@ -1,6 +1,7 @@
 
 syntax = "proto3";
 package crypto_deposit_addr_gen;
+import "google/protobuf/empty.proto";
 
 message GetWalletDepositAddressRequest {
     string ClientId = 1;
@@ -42,4 +43,5 @@ service CryptoDepositAddressGeneratorService {
     rpc GetOrderDepositAddresses(crypto_deposit_addr_gen.GetOrderDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
     rpc GetMerchantDepositAddresses(crypto_deposit_addr_gen.GetMerchantDepositAddressRequest) returns (stream crypto_deposit_addr_gen.AddressModel);
     rpc GetByDepositAddress(crypto_deposit_addr_gen.GetByDepositAddressRequest) returns (crypto_deposit_addr_gen.GetByAddressResponse);    
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }

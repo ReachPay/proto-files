@@ -1,7 +1,7 @@
 
 syntax = "proto3";
 package orderscharger;
-
+import "google/protobuf/empty.proto";
 
 message ExecuteOrderRequest {
     string ProcessId = 1;
@@ -26,4 +26,5 @@ message ExecuteOrderResponse{
 
 service OrdersChargerService {
     rpc ExecuteOrder(orderscharger.ExecuteOrderRequest) returns (orderscharger.ExecuteOrderResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }

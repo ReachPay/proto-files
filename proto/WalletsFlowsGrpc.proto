@@ -1,6 +1,7 @@
 
 syntax = "proto3";
 package wallets;
+import "google/protobuf/empty.proto";
 
 message SwapGrpcRequest {
     string ProcessId = 1;
@@ -100,5 +101,6 @@ service WalletsFlowsGrpcService {
     rpc SendToMultipleWallets(wallets.SendToMultipleDestinationsGrpcRequest) returns (wallets.SendToMultipleGrpcResponse);
     rpc BalanceUpdate(wallets.BalanceUpdateGrpcRequest) returns (wallets.BalanceUpdateGrpcResponse);
     rpc GetWalletsBalance(wallets.GetWalletsBalanceRequest) returns (stream wallets.WalletBalanceGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
 

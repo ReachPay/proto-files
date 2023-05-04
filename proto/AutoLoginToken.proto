@@ -1,5 +1,6 @@
 syntax = "proto3";
 package autologintoken;
+import "google/protobuf/empty.proto";
 
 message GenerateConfirmationLinkRequest {
     string ClientId = 1;
@@ -12,4 +13,5 @@ message GenerateConfirmationLinkResponse{
 
 service AutoLoginTokenService {
     rpc GenerateConfirmationLink(GenerateConfirmationLinkRequest) returns (GenerateConfirmationLinkResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }

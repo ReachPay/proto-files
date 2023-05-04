@@ -84,4 +84,5 @@ service WithdrawalsFlowsGrpc {
     rpc GetClientWithdrawals(withdrawals.GetClientWithdrawalsGrpcRequest) returns (stream WithdrawalGrpcModel);
     rpc GetMerchantWithdrawals(withdrawals.GetMerchantWithdrawalsGrpcRequest) returns (stream WithdrawalGrpcModel);
     rpc GetWithdrawals(withdrawals.GetWithdrawalsGrpcRequest) returns (stream WithdrawalGrpcModel);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }

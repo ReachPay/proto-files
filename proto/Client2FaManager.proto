@@ -30,4 +30,5 @@ message ValidateClientCodeResponse {
 service Client2FaManager {
     rpc ValidateClientCode(client_fa_manager.ValidateClientCodeRequest) returns (client_fa_manager.ValidateClientCodeResponse);
     rpc GenerateClientCode(client_fa_manager.GenerateClientCodeRequest) returns (google.protobuf.Empty);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
