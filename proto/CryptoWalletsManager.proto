@@ -1,5 +1,7 @@
 syntax = "proto3";
 package crypto_wallets;
+import "google/protobuf/empty.proto";
+
 
 message GetCryptoWalletsRequest{
     string WalletId = 1;
@@ -65,6 +67,21 @@ enum CryptoWalletsManagerResponseStatus{
     NotSupportedAsset = 1;
 }
 
+message FireblocksBridgeVaultWallet{
+    string VaultId = 1;
+    string Asset = 2;
+    double AvailableBalance = 3; 
+    optional double Balance = 4; 
+}
+
+message ExecuteTransactionGrcpRequest{
+    string VaultFrom = 1;
+    string VaultTo = 2;
+    string Asset = 3; 
+    double Amount = 4; 
+    optional string Message = 5;
+}
+
 service CryptoWalletsManager {
     rpc GetClientDepositWallet(crypto_wallets.GetCryptoWalletsRequest) returns (crypto_wallets.GetCryptoWalletsResponse);
     rpc GetOrderDepositWallet(crypto_wallets.GenerateOrderDepositWalletRequest) returns (crypto_wallets.GetCryptoWalletsResponse);
@@ -72,4 +89,6 @@ service CryptoWalletsManager {
     rpc GetMerchantExternalWalletsAssets(crypto_wallets.GetMerchantExternalWallets) returns (stream crypto_wallets.MerchantExternalWalletAssets);
     rpc CreateMerchantExternalWallet(crypto_wallets.CreateMerchantExternalWalletRequest) returns (crypto_wallets.MerchantExternalWalletAssets);
     rpc CreateWithdrawal(crypto_wallets.MakeWithdrawalRequest) returns (crypto_wallets.MakeWithdrawalResponse);
+    rpc GetVaultWallets(google.protobuf.Empty) returns (stream FireblocksBridgeVaultWallet);
+    rpc ExecuteTransaction(crypto_wallets.ExecuteTransactionGrcpRequest) returns (google.protobuf.Empty);
 } 
