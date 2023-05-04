@@ -10,6 +10,6 @@ message GenerateConfirmationLinkResponse{
     string ConfirmUrl = 1;
 }
 
-service AutoLoginTokenSerivce {
-    rpc GenerateConfirmationLink(autologintoken.GenerateConfirmationLinkRequest) returns (autologintoken.GenerateConfirmationLinkResponse);
+service AutoLoginTokenService {
+    rpc GenerateConfirmationLink(GenerateConfirmationLinkRequest) returns (GenerateConfirmationLinkResponse);
  }
