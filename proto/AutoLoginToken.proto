@@ -11,7 +11,24 @@ message GenerateConfirmationLinkResponse{
     string ConfirmUrl = 1;
 }
 
+
+message ResolveAutoLoginTokenRequest {
+    string Token = 1;
+}
+
+enum ResolveAutoLoginTokenResponseStatus {
+    OK = 0;
+    INVALID_TOKEN = 1;
+    EXPIRED_TOKEN = 2;
+}
+
+message ResolveAutoLoginTokenResponse{
+    ResolveAutoLoginTokenResponseStatus Status = 1;
+    string ClientId = 2;
+}
+
 service AutoLoginTokenService {
     rpc GenerateConfirmationLink(GenerateConfirmationLinkRequest) returns (GenerateConfirmationLinkResponse);
+    rpc ResolveAutoLoginToken(ResolveAutoLoginTokenRequest) returns (ResolveAutoLoginTokenResponse);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
  }
