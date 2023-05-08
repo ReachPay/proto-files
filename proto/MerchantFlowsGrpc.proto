@@ -26,7 +26,7 @@ message MerchantFlowsUpdateApiKeyRequest {
     string ApiKey = 2;
 }
 
-message MerchantFlowsResolveClientMerchnatRequest {
+message MerchantFlowsResolveClientMerchantRequest {
     string ClientId = 1;
 }
 
@@ -44,9 +44,9 @@ message MerchantFlowsRemoveCallbackUrlRequest{
     string CallbackUrl = 2;
 }
 
-message MerchantFlowsUpdateComissionSettingsRequest{
+message MerchantFlowsUpdateCommissionSettingsRequest{
     string MerchantId = 1;
-    double ComissionPercent = 2;
+    double CommissionPercent = 2;
 }
 
 message MerchantFlowsGetMerchantSettingsRequest{
@@ -54,12 +54,12 @@ message MerchantFlowsGetMerchantSettingsRequest{
 }
 
 message MerchantFlowsGetMerchantSettingsResponse{
-    merchantflows.MerchantFlowsMerchantSettingsModel Settings = 1;
+    MerchantFlowsMerchantSettingsModel Settings = 1;
 }
 
 message MerchantFlowsMerchantSettingsModel{
     repeated string CallbackUrls = 1;
-    double ComissionPercent = 2;
+    double CommissionPercent = 2;
     string ApiKey = 3;
 }
 message MerchantFlowsGetCallbacksLogsRequest{
@@ -89,12 +89,12 @@ enum MerchantFlowsCallbackOverrideType{
 message MerchantFlowsMerchantOverrideModel{
     string Currency = 1;
     string Network = 2;
-    merchantflows.MerchantFlowsCallbackOverrideType OverrideType = 3;
+    MerchantFlowsCallbackOverrideType OverrideType = 3;
 }
 
 message MerchantFlowsAddMerchantOverrideRequest{
     string MerchantId = 1;
-    merchantflows.MerchantFlowsMerchantOverrideModel MerchantOverride = 2;
+    MerchantFlowsMerchantOverrideModel MerchantOverride = 2;
 }
 
 message MerchantFlowsGetMerchantOverridesRequest{
@@ -103,7 +103,7 @@ message MerchantFlowsGetMerchantOverridesRequest{
 
 message MerchantFlowsSetAllCallbackOverrideOverridesRequest{
     string MerchantId = 1;
-    merchantflows.MerchantFlowsCallbackOverrideType OverrideType = 2;
+    MerchantFlowsCallbackOverrideType OverrideType = 2;
 }
 
 message MerchantFlowsMerchantMemberRequest{
@@ -113,22 +113,22 @@ message MerchantFlowsMerchantMemberRequest{
 
 
 service MerchantFlowsService {
-    rpc Resolve(merchantflows.MerchantFlowsResolveMerchantRequest) returns (merchantflows.MerchantFlowsResolveMerchantResponse);
-    rpc Add(merchantflows.MerchantFlowsAddMerchantRequest) returns (google.protobuf.Empty);
-    rpc EnableDisable(merchantflows.MerchantFlowsEnableDisableRequest) returns (google.protobuf.Empty);
-    rpc UpdateApiKey(merchantflows.MerchantFlowsUpdateApiKeyRequest) returns (google.protobuf.Empty);
-    rpc ResolveMerchnat(merchantflows.MerchantFlowsResolveClientMerchnatRequest) returns (merchantflows.MerchantFlowsIsMerchantResponse);
-    rpc AddCallbackUrl(merchantflows.MerchantFlowsAddCallbackUrlRequest) returns (google.protobuf.Empty);
-    rpc RemoveCallbackUrl(merchantflows.MerchantFlowsRemoveCallbackUrlRequest) returns (google.protobuf.Empty);
-    rpc UpdateComissionSettings(merchantflows.MerchantFlowsUpdateComissionSettingsRequest)  returns (google.protobuf.Empty);
-    rpc GetMerchantSettings(merchantflows.MerchantFlowsGetMerchantSettingsRequest) returns (merchantflows.MerchantFlowsGetMerchantSettingsResponse);
-    rpc GetMerchantCallbackLogs(merchantflows.MerchantFlowsGetCallbacksLogsRequest) returns (stream merchantflows.MerchantFlowsCallbackLogModel);
-    rpc AddMerchantCallbackOverride(merchantflows.MerchantFlowsAddMerchantOverrideRequest) returns (google.protobuf.Empty);
-    rpc GetMerchantCallbackOverrides(merchantflows.MerchantFlowsGetMerchantOverridesRequest) returns (stream merchantflows.MerchantFlowsMerchantOverrideModel);
-    rpc ResetDefaultCallbackSettings(merchantflows.MerchantFlowsGetMerchantOverridesRequest) returns (google.protobuf.Empty);
-    rpc SetAllCallbackOverride(merchantflows.MerchantFlowsSetAllCallbackOverrideOverridesRequest) returns (google.protobuf.Empty);
-    rpc AddMerchantMember(merchantflows.MerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
-    rpc RemoveMerchantMember(merchantflows.MerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
+    rpc Resolve(MerchantFlowsResolveMerchantRequest) returns (MerchantFlowsResolveMerchantResponse);
+    rpc Add(MerchantFlowsAddMerchantRequest) returns (google.protobuf.Empty);
+    rpc EnableDisable(MerchantFlowsEnableDisableRequest) returns (google.protobuf.Empty);
+    rpc UpdateApiKey(MerchantFlowsUpdateApiKeyRequest) returns (google.protobuf.Empty);
+    rpc ResolveMerchant(MerchantFlowsResolveClientMerchantRequest) returns (MerchantFlowsIsMerchantResponse);
+    rpc AddCallbackUrl(MerchantFlowsAddCallbackUrlRequest) returns (google.protobuf.Empty);
+    rpc RemoveCallbackUrl(MerchantFlowsRemoveCallbackUrlRequest) returns (google.protobuf.Empty);
+    rpc UpdateCommissionSettings(MerchantFlowsUpdateCommissionSettingsRequest)  returns (google.protobuf.Empty);
+    rpc GetMerchantSettings(MerchantFlowsGetMerchantSettingsRequest) returns (MerchantFlowsGetMerchantSettingsResponse);
+    rpc GetMerchantCallbackLogs(MerchantFlowsGetCallbacksLogsRequest) returns (stream MerchantFlowsCallbackLogModel);
+    rpc AddMerchantCallbackOverride(MerchantFlowsAddMerchantOverrideRequest) returns (google.protobuf.Empty);
+    rpc GetMerchantCallbackOverrides(MerchantFlowsGetMerchantOverridesRequest) returns (stream MerchantFlowsMerchantOverrideModel);
+    rpc ResetDefaultCallbackSettings(MerchantFlowsGetMerchantOverridesRequest) returns (google.protobuf.Empty);
+    rpc SetAllCallbackOverride(MerchantFlowsSetAllCallbackOverrideOverridesRequest) returns (google.protobuf.Empty);
+    rpc AddMerchantMember(MerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
+    rpc RemoveMerchantMember(MerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
