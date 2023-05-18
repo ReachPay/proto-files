@@ -106,7 +106,12 @@ message MerchantFlowsSetAllCallbackOverrideOverridesRequest{
     MerchantFlowsCallbackOverrideType OverrideType = 2;
 }
 
-message MerchantFlowsMerchantMemberRequest{
+message AddMerchantFlowsMerchantMemberRequest{
+    string ClientId = 1;
+    string MerchantId = 2;
+}
+
+message RemoveMerchantFlowsMerchantMemberRequest{
     string ClientId = 1;
     string MerchantId = 2;
 }
@@ -127,8 +132,8 @@ service MerchantFlowsService {
     rpc GetMerchantCallbackOverrides(MerchantFlowsGetMerchantOverridesRequest) returns (stream MerchantFlowsMerchantOverrideModel);
     rpc ResetDefaultCallbackSettings(MerchantFlowsGetMerchantOverridesRequest) returns (google.protobuf.Empty);
     rpc SetAllCallbackOverride(MerchantFlowsSetAllCallbackOverrideOverridesRequest) returns (google.protobuf.Empty);
-    rpc AddMerchantMember(MerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
-    rpc RemoveMerchantMember(MerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
+    rpc AddMerchantMember(AddMerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
+    rpc RemoveMerchantMember(RemoveMerchantFlowsMerchantMemberRequest) returns (google.protobuf.Empty);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
