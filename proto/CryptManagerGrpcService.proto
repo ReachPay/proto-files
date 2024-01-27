@@ -1,0 +1,28 @@
+
+syntax = "proto3";
+package crypt_manager;
+import "google/protobuf/empty.proto";
+
+message CryptCallbackMessageRequest{
+    string Message = 1;
+    string MerchantId = 2;
+}
+
+message CryptCallbackMessageResponse{
+    string Message = 1;
+}
+
+message GetMerchantPublicKeyRequest {
+    string MerchantId = 1;
+}
+
+message GetMerchantPublicKeyResponse {
+    optional string KeyContent = 1;
+}
+
+service CryptManagerGrpcService {
+    rpc CryptMessage(CryptCallbackMessageRequest) returns (CryptCallbackMessageResponse);
+    rpc GetPublicKey(GetMerchantPublicKeyRequest) returns (GetMerchantPublicKeyResponse);
+    rpc ResetKeyPair(GetMerchantPublicKeyRequest) returns (GetMerchantPublicKeyResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
