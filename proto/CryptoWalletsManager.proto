@@ -74,7 +74,7 @@ message FireblocksBridgeVaultWallet{
     optional double Balance = 4; 
 }
 
-message ExecuteTransactionGrcpRequest{
+message ExecuteTransactionGrpcRequest{
     string VaultFrom = 1;
     string VaultTo = 2;
     string Asset = 3; 
@@ -90,6 +90,6 @@ service CryptoWalletsManager {
     rpc CreateMerchantExternalWallet(crypto_wallets.CreateMerchantExternalWalletRequest) returns (crypto_wallets.MerchantExternalWalletAssets);
     rpc CreateWithdrawal(crypto_wallets.MakeWithdrawalRequest) returns (crypto_wallets.MakeWithdrawalResponse);
     rpc GetVaultWallets(google.protobuf.Empty) returns (stream FireblocksBridgeVaultWallet);
-    rpc ExecuteTransaction(crypto_wallets.ExecuteTransactionGrcpRequest) returns (google.protobuf.Empty);
+    rpc ExecuteTransaction(crypto_wallets.ExecuteTransactionGrpcRequest) returns (google.protobuf.Empty);
     rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 } 
