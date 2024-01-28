@@ -1,7 +1,7 @@
 
 syntax = "proto3";
 import "google/protobuf/empty.proto";
-package merchantflows;
+package merchant_flows;
 
 message MerchantFlowsResolveMerchantRequest {
     string ApiKey = 1;
