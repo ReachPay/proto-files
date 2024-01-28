@@ -1,0 +1,19 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ethereum_bridge;
+
+// GET
+message GetClientWalletInfoRequest {
+    string ClientId = 1;
+}
+
+message ClientWalletInfoResponse {
+    string PublicKey = 1;
+    string Address = 2;
+}
+
+service EthereumBridgeService {
+    rpc GetClientWalletInfo(GetClientWalletInfoRequest) returns (ClientWalletInfoResponse);
+    rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+ }
