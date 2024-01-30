@@ -75,7 +75,7 @@ enum DoneOrderResult{
     NotFound=1;
     AlreadyCanceled=2;
     Expired=3;
-    Paied=4;
+    Paid=4;
 }
 
 message CancelOrderResponse{
