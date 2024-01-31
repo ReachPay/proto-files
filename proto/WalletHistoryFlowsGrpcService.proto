@@ -3,13 +3,25 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 package wallet_history;
 
+enum HistoryOperationType{
+    Buy =0;
+    Sell =1;
+    CryptoDeposit =2;
+    SendToPayOrder =3;
+    ReceiveAsOrderPaid =4;
+    CommissionPaid =5;
+    CommissionReceived =6;
+    Withdrawal =7;
+    WithdrawalCanceled =8;
+}
+
 
 message GetHistoryStatisticsRequest{
     string ClientId = 1;
     repeated string AssetIds = 2;
     int64 FromDate = 3;
     int64 ToDate = 4;
-    repeated int32 OpTypes = 5;
+    repeated HistoryOperationType OpTypes = 5;
 }
 
 message GetHistoryStatisticsResponse{
@@ -24,13 +36,13 @@ message GetHistoryGrpcRequest {
     int64 ToDate = 4;
     int64 PageNo = 5;
     int64 MessagesPerPage = 6;
-    repeated int32 OpTypes = 7;
+    repeated HistoryOperationType OpTypes = 7;
 }
 
 message HistoryGrpcLine {
     int64 Timestamp = 1;
     string AssetId = 2;
-    int32 OperationType = 3;
+    HistoryOperationType OperationType = 3;
     double Delta = 4;
     double Balance = 5;
     string ProcessId = 6;
