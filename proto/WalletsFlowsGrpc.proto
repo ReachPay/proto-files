@@ -16,7 +16,7 @@ message SwapGrpcRequest {
 
 enum OperationResult{
     Ok = 0;
-    NotEnoughtFunds=1;
+    NotEnoughFunds=1;
 }
 
 message SendGrpcRequest {
